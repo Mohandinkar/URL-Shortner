@@ -11,8 +11,8 @@ const handleGenerateNewShortURL = async(req,res)=>{
         redirectURL : orgURL,
         visitHistory : [],
     });
-
-    return res.json({id: shortID});
+    res.render("Home.ejs",{id:shortID});
+    // return res.json({id: shortID});
 
 }  
 
