@@ -18,7 +18,7 @@
         </form>
         <% if (locals.id) { %>
             <p> URL Generated : localhost:8080/url/<%= locals.id %> </p>
-        <% } %>
+        <% } else{ %>
     </div>
     <div>
         <table>
@@ -41,5 +41,6 @@
             </tbody>
         </table>
     </div>
+    <% } %>
 </body>
 </html>

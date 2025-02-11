@@ -10,7 +10,7 @@ async function handleUserSignup(req,res){
        password
     });
     console.log("User register successfully!");
-    res.redirect("/");
+    res.redirect("/login");
 }
 
 const handleUserLogin = async (req,res)=>{

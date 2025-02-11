@@ -4,7 +4,8 @@ const router = express.Router();
 
 router.get("/",async (req,res)=>{
     console.log("home page");
-    const allUrls = await URL.find({});
+    if(!req.user) return res.redirect("/login");
+    const allUrls = await URL.find({ createdBy : req.user._id});
     res.render("Home.ejs",{urls:allUrls});
 })
 

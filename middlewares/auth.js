@@ -1,7 +1,9 @@
-const {getUser} = require("../service/auth");
+const { getUser } = require("../service/auth");
 
 module.exports.restrictToLoggedinUserOnly = (req, res, next) => {
-  const userUid = req.cookie?.uid;
+  // console.log(req);
+  const userUid = req.cookies?.uid;
+
   if (!userUid) {
     res.redirect("/login");
   }
@@ -9,8 +11,18 @@ module.exports.restrictToLoggedinUserOnly = (req, res, next) => {
   if (!user) {
     res.redirect("/login");
   }
-
+  req.user = user;
+  console.log(req.user);
   next();
 };
 
 
+module.exports.checkAuth = (req, res, next) => {
+    // console.log(req);
+    const userUid = req.cookies?.uid;
+ 
+    const user = getUser(userUid);
+    req.user = user;
+
+    next();
+  };

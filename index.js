@@ -23,7 +23,7 @@ app.set("views",path.resolve("./views"));
 
 app.use("/url", authMiddleware.restrictToLoggedinUserOnly,  urlRoute);
 app.use("/user",userROute);
-app.use("/",staticRoute);
+app.use("/",authMiddleware.checkAuth ,staticRoute);
 
 
 app.get("/url/:shortId", handleGetOriginalURL);
