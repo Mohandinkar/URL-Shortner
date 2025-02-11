@@ -40,8 +40,4 @@ const handleGetAnalytics = async(req,res)=>{
 
 }
 
-
-
-
-
 module.exports = {handleGenerateNewShortURL, handleGetOriginalURL,handleGetAnalytics};

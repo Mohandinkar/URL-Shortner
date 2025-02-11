@@ -3,7 +3,10 @@ const app = express();
 const path = require("path");
 const urlRoute = require("./routes/url");
 const staticRoute = require("./routes/staticRoute");
+const userROute = require("./routes/user");
 const connectDB = require("./connect");
+const cookieParser = require("cookie-parser");
+const authMiddleware = require("./middlewares/auth");
 
 const {handleGetOriginalURL} = require("./controllers/url")
 
@@ -13,12 +16,15 @@ connectDB("mongodb://localhost:27017/short-url")
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
 
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 
-app.use("/url", urlRoute);
+app.use("/url", authMiddleware.restrictToLoggedinUserOnly,  urlRoute);
+app.use("/user",userROute);
 app.use("/",staticRoute);
+
 
 app.get("/url/:shortId", handleGetOriginalURL);
 
