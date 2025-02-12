@@ -21,7 +21,7 @@ const handleUserLogin = async (req,res)=>{
     }
     console.log("user Login Successfully");
 
-    
+    //stateless authentication
    const token = setUser(user);
     res.cookie("uid", token);
     
