@@ -17,13 +17,15 @@ connectDB("mongodb://localhost:27017/short-url")
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+//authentication middleware
+app.use(authMiddleware.checkForAuthenticaion);
 
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 
-app.use("/url", authMiddleware.restrictToLoggedinUserOnly,  urlRoute);
+app.use("/url", authMiddleware.restrictTo(["NORMAL"]), urlRoute);
 app.use("/user",userROute);
-app.use("/",authMiddleware.checkAuth ,staticRoute);
+app.use("/",staticRoute);
 
 
 app.get("/url/:shortId", handleGetOriginalURL);

@@ -1,28 +1,28 @@
 const { getUser } = require("../service/auth");
 
-module.exports.restrictToLoggedinUserOnly = (req, res, next) => {
+module.exports.checkForAuthenticaion = (req, res, next) => {
   // console.log(req);
-  const userUid = req.cookies?.uid;
+  const tokenCookie = req.cookies?.uid;
+  req.user = null;
 
-  if (!userUid) {
-    res.redirect("/login");
+  if (!tokenCookie) {
+    return next();
   }
-  const user = getUser(userUid);
-  if (!user) {
-    res.redirect("/login");
-  }
+  const user = getUser(tokenCookie);
+
   req.user = user;
   console.log(req.user);
   next();
 };
 
+//authorization
+module.exports.restrictTo=(roles = [])=>{
+  return function(req, res, next){
+    if(!req.user) return res.redirect("/login");
+    if(!roles.includes(req.user.role)){
+      res.status(403).send({message:"You don't have permission to access this resource."});
+      }
+      next();
+  }
+}
 
-module.exports.checkAuth = (req, res, next) => {
-    // console.log(req);
-    const userUid = req.cookies?.uid;
- 
-    const user = getUser(userUid);
-    req.user = user;
-
-    next();
-  };

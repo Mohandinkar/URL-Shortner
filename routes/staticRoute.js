@@ -1,10 +1,12 @@
 const express = require("express");
 const URL = require("../models/url");
 const router = express.Router();
+const authMiddleware = require("../middlewares/auth");
 
-router.get("/",async (req,res)=>{
+
+router.get("/",authMiddleware.restrictTo(["NORMAL"]),async (req,res)=>{
     console.log("home page");
-    if(!req.user) return res.redirect("/login");
+   
     const allUrls = await URL.find({ createdBy : req.user._id});
     res.render("Home.ejs",{urls:allUrls});
 })
