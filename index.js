@@ -8,7 +8,7 @@ const connectDB = require("./connect");
 const cookieParser = require("cookie-parser");
 const authMiddleware = require("./middlewares/auth");
 
-const {handleGetOriginalURL} = require("./controllers/url")
+const {handleGetOriginalURL} = require("./controllers/url");
 
 connectDB("mongodb://localhost:27017/short-url")
 .then(()=>console.log("mongodb Connected"))
@@ -23,10 +23,9 @@ app.use(authMiddleware.checkForAuthenticaion);
 app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 
-app.use("/url", authMiddleware.restrictTo(["NORMAL"]), urlRoute);
+app.use("/url", authMiddleware.restrictTo(["NORMAL","ADMIN"]), urlRoute);
 app.use("/user",userROute);
 app.use("/",staticRoute);
-
 
 app.get("/url/:shortId", handleGetOriginalURL);
 
