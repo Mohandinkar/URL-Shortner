@@ -4,6 +4,7 @@ const path = require("path");
 const urlRoute = require("./routes/url");
 const staticRoute = require("./routes/staticRoute");
 const userROute = require("./routes/user");
+const ejsMate = require("ejs-mate");
 const connectDB = require("./connect");
 const cookieParser = require("cookie-parser");
 const authMiddleware = require("./middlewares/auth");
@@ -15,6 +16,7 @@ connectDB("mongodb://localhost:27017/short-url")
 .catch((err)=>console.log("Not connected",err));
 
 app.use(express.json());
+app.engine('ejs', ejsMate);
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 //authentication middleware

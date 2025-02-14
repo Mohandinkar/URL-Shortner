@@ -1,38 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <style>
+<% layout("./boilerPlate/base.ejs") %>
 
-    </style>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URL-Shortner</title>
-</head>
-<body>
-    <h1>URL Shortner</h1>
-    <div>
+    <div class="url d-flex justify-content-center">
         <form method="POST" action="/url">
-            <lable for="url">Enter your Original URL</lable>
-            <input type="text" id="url" name="url" placeholder="Enter URL">
-            <button type="submit">Generate</button>
+            <label for="url" class="org-url">Enter your Original URL</label>
+
+            <input class="in-class" type="text" id="url" name="url" placeholder="&#128279; Enter URL">
+            <button type="submit" class="btn-generate">Generate</button>
         </form>
         <% if (locals.id) { %>
             <p> URL Generated : localhost:8080/url/<%= locals.id %> </p>
         <% } else{ %>
     </div>
-    <div>
-        <table>
-            <thead>
+    <div class="d-flex justify-content-center" style="margin-top: 1rem;">
+        <table  class="table table-bordered">
+            <thead style="font-weight: 600; background:linear-gradient(45deg,#c2c7cf,lightgreen);">
                 <th>Sr No.</th>
                 <th>Short Url</th>
                 <th>Redirect Url</th>
                 <th>Clicks</th>
             </thead>
             <tbody>
-                <% urls.forEach((url,index) => {%>
+                <% urls.forEach((url,index) => {%>      
                     <tr>
                     <td><%= index+1 %></td>
-                    <td><%= url.shortId %></td>
+                    <td>localhost:8080/url/<%= url.shortId %></td>
                     <td><%= url.redirectURL %></td>
                     <td><%= url.visitHistory.length %></td>
                 </tr>
@@ -42,5 +33,3 @@
         </table>
     </div>
     <% } %>
-</body>
-</html>
