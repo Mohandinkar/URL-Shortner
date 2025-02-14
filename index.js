@@ -19,6 +19,7 @@ app.use(express.json());
 app.engine('ejs', ejsMate);
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+
 //authentication middleware
 app.use(authMiddleware.checkForAuthenticaion);
 
