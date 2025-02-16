@@ -1,22 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SignUp Page</title>
-</head>
-<body>
-    <h1>SignUp</h1>
-    <form method="POST" action="/user">
-        <lable>Full Name :</lable>
-        <input type="text" name="name" placeholder="Enter your name" required><br><br>
-        <lable>Email:</lable>
-        <input type="text" name="email" placeholder="Enter Email" required><br><br>
-        <lable>Password :</lable>
-        <input type="text" name="password" placeholder="Enter Password" required><br><br>
+<% layout("./boilerPlate/base.ejs")%>
 
-        <button type="submit">SignUp</button>
+<div class="signUp-form">
+    <h1 class="signUp-text">SignUp</h1>
+    <form method="POST" action="/user">
+        <lable style="font-weight: 500; font-size: 1.3rem;">Full Name </lable>
+        <input type="text" name="name" placeholder="Enter your name" class="name-field" required><br><br>
+        <lable style="font-weight: 500; font-size: 1.3rem;">Email</lable>
+        <input type="text" name="email" class="email-field" placeholder="Enter Email" required><br><br>
+        <lable style="font-weight: 500; font-size: 1.3rem;">Password </lable>
+        <input type="password" name="password" class="password-field" placeholder="Enter Password" required><br><br>
+        <div class="sign-btn">
+        <button type="submit" class="signUp-btn">SignUp</button>
+    </div>
         
     </form>
-</body>
-</html>
+
+</div>

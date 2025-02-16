@@ -1,4 +1,4 @@
-const shortid = require("short-id");
+const shortid = require("shortid");
 const URL = require("../models/url");
 
 const handleGenerateNewShortURL = async(req,res)=>{
@@ -12,7 +12,9 @@ const handleGenerateNewShortURL = async(req,res)=>{
         visitHistory : [],
         createdBy:req.user._id,
     });
-    res.render("Home.ejs",{id:shortID});
+    const urls = null;
+    console.log(shortID);
+    res.render("Home.ejs",{id:shortID, urls:urls});
     // return res.json({id: shortID});
 
 }  

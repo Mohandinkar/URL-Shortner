@@ -1,35 +1,42 @@
 <% layout("./boilerPlate/base.ejs") %>
 
-    <div class="url d-flex justify-content-center">
-        <form method="POST" action="/url">
-            <label for="url" class="org-url">Enter your Original URL</label>
-
-            <input class="in-class" type="text" id="url" name="url" placeholder="&#128279; Enter URL">
-            <button type="submit" class="btn-generate">Generate</button>
-        </form>
-        <% if (locals.id) { %>
-            <p> URL Generated : localhost:8080/url/<%= locals.id %> </p>
-        <% } else{ %>
-    </div>
-    <div class="d-flex justify-content-center" style="margin-top: 1rem;">
-        <table  class="table table-bordered">
-            <thead style="font-weight: 600; background:linear-gradient(45deg,#c2c7cf,lightgreen);">
-                <th>Sr No.</th>
-                <th>Short Url</th>
-                <th>Redirect Url</th>
-                <th>Clicks</th>
-            </thead>
-            <tbody>
+<div class="url d-flex justify-content-center">
+    <form method="POST" action="/url">
+        <label for="url" class="org-url">Enter your Original URL</label>
+        <input class="in-class" type="text" id="url" name="url" placeholder="&#128279; Enter URL" required>
+        <button type="submit" class="btn-generate">Generate</button>
+    </form>
+   
+</div>
+<% if (id) { %>
+    <div class="d-flex justify-content-center"">
+    <p class="generate-url"> URL Generated : <a href="localhost:8080/url/<%= locals.id %>" target="_blank">localhost:8080/url/<%=id %></a> </p>
+</div>
+<% } else{ %>
+<div class="d-flex justify-content-center" style="margin-top: 1rem;">
+    <table  class="table table-bordered">
+        <thead style="font-weight: 600; background:linear-gradient(45deg,#c2c7cf,lightgreen);">
+            <th>Sr No.</th>
+            <th>Short Url</th>
+            <th>Redirect Url</th>
+            <th>Clicks</th>
+        </thead>
+        <tbody>
+            <% if(urls && urls.length > 0) { %>
                 <% urls.forEach((url,index) => {%>      
                     <tr>
                     <td><%= index+1 %></td>
-                    <td>localhost:8080/url/<%= url.shortId %></td>
+                    <td><a href="localhost:8080/url/<%= url.shortId %>">localhost:8080/url/<%= url.shortId %></a></td>
                     <td><%= url.redirectURL %></td>
                     <td><%= url.visitHistory.length %></td>
                 </tr>
                 <%})%>
-               
-            </tbody>
-        </table>
-    </div>
-    <% } %>
+            <% } else { %>
+                <tr>
+                    <td colspan="4">No URLs found.</td>
+                </tr>
+            <% } %>
+        </tbody>
+    </table>
+</div>
+<% } %>
