@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 const urlRoute = require("./routes/url");
 const staticRoute = require("./routes/staticRoute");
-const userROute = require("./routes/user");
+const userRoute = require("./routes/user");
 const ejsMate = require("ejs-mate");
 const connectDB = require("./connect");
 const cookieParser = require("cookie-parser");
@@ -27,7 +27,7 @@ app.set("view engine","ejs");
 app.set("views",path.resolve("./views"));
 
 app.use("/url", authMiddleware.restrictTo(["NORMAL","ADMIN"]), urlRoute);
-app.use("/user",userROute);
+app.use("/user",userRoute);
 app.use("/",staticRoute);
 
 app.get("/url/:shortId", handleGetOriginalURL);

@@ -14,7 +14,7 @@ const handleGenerateNewShortURL = async(req,res)=>{
     });
     const urls = null;
     console.log(shortID);
-    res.render("Home.ejs",{id:shortID, urls:urls});
+    res.render("Home.ejs",{id:shortID, urls:urls, user:null});
     // return res.json({id: shortID});
 
 }  
