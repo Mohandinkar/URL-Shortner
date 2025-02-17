@@ -1,3 +1,7 @@
+if(process.env.NODE_ENV != "production"){
+    require("dotenv").config();
+}
+
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -10,8 +14,8 @@ const cookieParser = require("cookie-parser");
 const authMiddleware = require("./middlewares/auth");
 
 const {handleGetOriginalURL} = require("./controllers/url");
-
-connectDB("mongodb://localhost:27017/short-url")
+const DBUrl = process.env.ATLASDB_URL;
+connectDB(DBUrl)
 .then(()=>console.log("mongodb Connected"))
 .catch((err)=>console.log("Not connected",err));
 
