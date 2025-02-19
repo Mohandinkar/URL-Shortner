@@ -1,13 +1,14 @@
-# URL Shortener
+# URL Shortener 🚀
 
-A simple URL shortener service built with Node.js, Express, and MongoDB.
+A simple and efficient URL shortener service built with Node.js, Express, and MongoDB.
 
-## Features
+## Features ✨
 
-- Shorten long URLs
-- Redirect to original URLs using short URLs
-- Track analytics for each short URL
+- **Shorten Long URLs**: Easily convert long URLs into short, manageable links.
+- **Redirect to Original URLs**: Use short URLs to seamlessly redirect to the original URLs.
+- **Track Analytics**: Monitor the number of clicks for each short URL.
 
-## Live Demo
+## Live Demo 🌐
 
 The website is live and can be accessed at [https://url-ixun.onrender.com](https://url-ixun.onrender.com).
+
